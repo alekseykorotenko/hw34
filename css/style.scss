@@ -1,0 +1,53 @@
+@import 'reset';
+
+body {
+  background-color: aquamarine;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.note-write {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  width: 80%;
+
+  #notes-input {
+    width: 100%;
+    padding: 15px;
+    border: 30px solid rgb(21, 97, 100);
+    border-right: 0;
+  }
+
+  #notes-btn {
+    padding: 15px;
+    border: 30px solid rgb(21, 97, 100);
+    border-left: 0;
+  }
+}
+
+.note-content {
+  margin: 0 auto;
+  width: 80%;
+
+  .note-item {
+    width: 100%;
+    background-color: rgba(255, 250, 250, 0.355);
+    padding: 15px 15px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+  }
+
+  .note-del {
+    padding: 10px 30px;
+    border-radius: 10px;
+    background-color: rgb(0, 251, 167);
+    color: #fff;
+  }
+}
