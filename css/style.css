@@ -166,6 +166,7 @@ body {
   border-right: 0;
 }
 .note-write #notes-btn {
+  cursor: pointer;
   padding: 15px;
   border: 30px solid rgb(21, 97, 100);
   border-left: 0;

@@ -36,12 +36,14 @@ function rendering() {
 // });
 
 notesBtn.addEventListener('click', () => {
-  const note = notesInput.value;
-  setLocalStorage(note);
-  //   rendering();
-  console.log(note);
-  rendering();
-  //   location.reload();
+  if (notesInput.value != '') {
+    const note = notesInput.value;
+    setLocalStorage(note);
+    //   rendering();
+    console.log(note);
+    rendering();
+    //   location.reload();
+  }
 });
 rendering();
 
