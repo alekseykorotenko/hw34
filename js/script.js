@@ -11,38 +11,30 @@ function rendering() {
     noteItem = document.createElement('li');
     noteItem.id = `${localStorage.key(i)}`;
     noteItem.classList = 'note-item';
-    noteItem.innerHTML = localStorage.getItem(localStorage.key(i));
+    noteItem.innerHTML = `<p class='note-text'>${localStorage.getItem(localStorage.key(i))}</p>`;
+
+    const buttons = document.createElement('div');
+    buttons.classList = 'note-btns';
+
     noteDel = document.createElement('button');
     noteDel.innerText = 'Del';
     noteDel.id = `${localStorage.key(i)}`;
     noteDel.classList = 'note-del';
-    noteItem.appendChild(noteDel);
+
+    buttons.appendChild(noteDel);
+    noteItem.appendChild(buttons);
     noteList.appendChild(noteItem);
   }
   notes.appendChild(noteList);
   const delBtn = document.querySelectorAll('.note-del');
-  //   console.log(notes);
-  console.log(delBtn);
-  delBtn.forEach((el) => {
-    el.addEventListener('click', () => {
-      console.log(el);
-      localStorage.removeItem(el.id);
-      document.getElementById(el.id).remove();
-    });
-  });
+  deleteNotes(delBtn);
 }
-
-// window.addEventListener('load', () => {
-// });
 
 notesBtn.addEventListener('click', () => {
   if (notesInput.value != '') {
     const note = notesInput.value;
     setLocalStorage(note);
-    //   rendering();
-    console.log(note);
     rendering();
-    //   location.reload();
   }
 });
 rendering();
@@ -58,3 +50,33 @@ function setLocalStorage(note) {
     setLocalStorage(count + 1);
   }
 }
+
+function deleteNotes(array) {
+  array.forEach((el) => {
+    el.addEventListener('click', () => {
+      console.log(el);
+      localStorage.removeItem(el.id);
+      document.getElementById(el.id).remove();
+    });
+  });
+}
+
+const editNote = document.querySelectorAll('.note-text');
+
+editNote.forEach((el) => {
+  el.addEventListener('dblclick', () => {
+    let getInnerHtml = el.textContent;
+    let editArea = document.createElement('input');
+    editArea.value = getInnerHtml;
+    editArea.onblur = () => {
+      let getValue = editArea.value;
+      localStorage.removeItem(el.parentElement.id);
+      localStorage.setItem(el.parentElement.id, editArea.value);
+      editArea.parentNode.innerHTML = getValue;
+    };
+
+    el.innerHTML = '';
+    el.appendChild(editArea);
+    editArea.focus();
+  });
+});

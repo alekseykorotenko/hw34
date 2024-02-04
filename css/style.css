@@ -189,6 +189,7 @@ button {
   align-items: center;
   font-weight: 500;
 }
+.note-content .note-edit,
 .note-content .note-del {
   padding: 10px 30px;
   border-radius: 10px;
