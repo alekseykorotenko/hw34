@@ -32,22 +32,25 @@ function rendering() {
 
 notesBtn.addEventListener('click', () => {
   if (notesInput.value != '') {
+    console.log(notesInput.value);
     const note = notesInput.value;
     setLocalStorage(note);
     rendering();
   }
 });
+
 rendering();
 
 let count = 0;
 
 function setLocalStorage(note) {
+  console.log(note);
   count++;
-  console.log(count);
   if (!localStorage.getItem(`note${count}`)) {
     localStorage.setItem(`note${count}`, note);
   } else if (localStorage.getItem(`note${count}`)) {
-    setLocalStorage(count + 1);
+    count++;
+    setLocalStorage(note);
   }
 }
 
@@ -63,20 +66,23 @@ function deleteNotes(array) {
 
 const editNote = document.querySelectorAll('.note-text');
 
-editNote.forEach((el) => {
-  el.addEventListener('dblclick', () => {
-    let getInnerHtml = el.textContent;
-    let editArea = document.createElement('input');
-    editArea.value = getInnerHtml;
-    editArea.addEventListener('blur', () => {
-      let getValue = editArea.value;
-      localStorage.removeItem(el.parentElement.id);
-      localStorage.setItem(el.parentElement.id, editArea.value);
-      editArea.parentNode.innerHTML = getValue;
-    });
+function editNotes() {
+  editNote.forEach((el) => {
+    el.addEventListener('dblclick', () => {
+      let getInnerHtml = el.textContent;
+      let editArea = document.createElement('input');
+      editArea.value = getInnerHtml;
+      editArea.addEventListener('blur', () => {
+        let getValue = editArea.value;
+        localStorage.removeItem(el.parentElement.id);
+        localStorage.setItem(el.parentElement.id, editArea.value);
+        editArea.parentNode.innerHTML = getValue;
+      });
 
-    el.innerHTML = '';
-    el.appendChild(editArea);
-    editArea.focus();
+      el.innerHTML = '';
+      el.appendChild(editArea);
+      editArea.focus();
+    });
   });
-});
+}
+editNotes();
