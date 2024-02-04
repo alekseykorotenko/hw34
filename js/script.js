@@ -36,9 +36,9 @@ notesBtn.addEventListener('click', () => {
     const note = notesInput.value;
     setLocalStorage(note);
     rendering();
+    editNotes();
   }
 });
-
 rendering();
 
 let count = 0;
@@ -64,9 +64,8 @@ function deleteNotes(array) {
   });
 }
 
-const editNote = document.querySelectorAll('.note-text');
-
 function editNotes() {
+  const editNote = document.querySelectorAll('.note-text');
   editNote.forEach((el) => {
     el.addEventListener('dblclick', () => {
       let getInnerHtml = el.textContent;
