@@ -68,12 +68,12 @@ editNote.forEach((el) => {
     let getInnerHtml = el.textContent;
     let editArea = document.createElement('input');
     editArea.value = getInnerHtml;
-    editArea.onblur = () => {
+    editArea.addEventListener('blur', () => {
       let getValue = editArea.value;
       localStorage.removeItem(el.parentElement.id);
       localStorage.setItem(el.parentElement.id, editArea.value);
       editArea.parentNode.innerHTML = getValue;
-    };
+    });
 
     el.innerHTML = '';
     el.appendChild(editArea);
